@@ -4,8 +4,8 @@
 
 namespace
 {
-constexpr const auto ThousandsSeparator = QChar(',');
-constexpr const auto DecimalSeparator = QChar('.');
+constexpr const auto ThousandsSeparator = QChar{','};
+constexpr const auto DecimalSeparator = QChar{'.'};
 
 QString CurrencySymbol()
 {
@@ -56,10 +56,10 @@ QString formatCrypto(double value)
     if (value < 1.) {
         if (value >= 1e-3) {
             value *= 1e3;
-            prefix = "m";
+            prefix = QStringLiteral("m");
         } else {
             value *= 1e6;
-            prefix = QChar(L'μ');
+            prefix = QChar{0x3bc}; // micro character
         }
     }
     const auto integerValue = static_cast<int>(value);
