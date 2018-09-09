@@ -1,0 +1,6 @@
+<RCC>
+    <qresource>
+        <file>circle-button.png</file>
+        <file>close-button-background.png</file>
+    </qresource>
+</RCC>

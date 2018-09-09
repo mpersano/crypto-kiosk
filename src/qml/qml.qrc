@@ -1,0 +1,11 @@
+<RCC>
+    <qresource>
+        <file>main.qml</file>
+        <file>Banner.qml</file>
+        <file>Start.qml</file>
+        <file>AddressScan.qml</file>
+        <file>AcceptMoney.qml</file>
+        <file>CircleButton.qml</file>
+        <file>CloseButton.qml</file>
+    </qresource>
+</RCC>
