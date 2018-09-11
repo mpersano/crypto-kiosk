@@ -8,13 +8,17 @@ Rectangle {
     width: 1024
     height: 768
 
+    readonly property int startIndex: 0
+    readonly property int addressScanIndex: 1
+    readonly property int acceptMoneyIndex: 2
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
        
         StackLayout {
             id: root
-            currentIndex: 0
+            currentIndex: startIndex
             Layout.fillHeight: true
             Layout.fillWidth: true
 
@@ -22,7 +26,7 @@ Rectangle {
                 width: root.width
                 height: root.height
                 onStartClicked: {
-                    root.currentIndex = 1
+                    root.currentIndex = addressScanIndex
                 }
             }
 
@@ -30,11 +34,11 @@ Rectangle {
                 width: root.width
                 height: root.height
                 onCloseClicked: {
-                    root.currentIndex = 0
+                    root.currentIndex = startIndex
                 }
                 onCodeDetected: {
                     if (controller.setDestinationAddress(code))
-                        root.currentIndex = 2
+                        root.currentIndex = acceptMoneyIndex
                 }
             }
 
