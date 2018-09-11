@@ -74,10 +74,8 @@ void KioskController::deposit(double value)
 
 void KioskController::getWalletBalance()
 {
-    const auto request = QJsonRpcMessage::createRequest(QStringLiteral("getbalance"));
-    auto *reply = m_nodeClient->sendMessage(request);
+    auto *reply = m_nodeClient->invokeRemoteMethod(QStringLiteral("getbalance"));
     connect(reply, &QJsonRpcServiceReply::finished, this, [this, reply] {
-        reply->disconnect(this);
         const auto message = reply->response();
         if (message.type() == QJsonRpcMessage::Error) {
             qDebug() << "RPC error:" << message.errorData();
