@@ -33,13 +33,15 @@ QJSONRPC_SOURCES += \
 HEADERS += \
 	$${QJSONRPC_HEADERS} \
     src/kioskcontroller.h \
-    src/qrcodevideofilter.h
+    src/qrcodevideofilter.h \
+    src/utils.h
 
 SOURCES += \
 	$${QJSONRPC_SOURCES} \
     src/main.cpp \
     src/kioskcontroller.cpp \
-    src/qrcodevideofilter.cpp
+    src/qrcodevideofilter.cpp \
+    src/utils.cpp
 
 RESOURCES += \
     src/qml/qml.qrc \
