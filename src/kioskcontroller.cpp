@@ -1,6 +1,10 @@
 #include "kioskcontroller.h"
 
+#include "nodeclient.h"
 #include "utils.h"
+
+#include <QSettings>
+#include <QDebug>
 
 #include <cmath>
 
@@ -15,6 +19,18 @@ QString AddressPrefix()
 KioskController::KioskController(QObject *parent)
     : QObject{parent}
 {
+    QSettings settings("settings.ini", QSettings::IniFormat);
+
+    const auto nodePort = settings.value("nodePort").toInt();
+    const auto nodeRpcUsername = settings.value("nodeRpcUsername").toString();
+    const auto nodeRpcPassword = settings.value("nodeRpcPassword").toString();
+
+    const auto endPoint = QStringLiteral("http://127.0.0.1:%1").arg(nodePort);
+    m_nodeClient = new NodeClient{endPoint, this};
+    m_nodeClient->setUsername(nodeRpcUsername);
+    m_nodeClient->setPassword(nodeRpcPassword);
+
+    getWalletBalance();
 }
 
 KioskController::~KioskController() = default;
@@ -54,4 +70,27 @@ void KioskController::deposit(double value)
     m_deposited += value;
     emit depositedChanged();
     emit purchasedChanged();
+}
+
+void KioskController::getWalletBalance()
+{
+    const auto request = QJsonRpcMessage::createRequest("getbalance");
+    auto *reply = m_nodeClient->sendMessage(request);
+    connect(reply, &QJsonRpcServiceReply::finished, this, &KioskController::getWalletBalanceFinished);
+}
+
+void KioskController::getWalletBalanceFinished()
+{
+    auto *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    reply->disconnect(this);
+    const auto message = reply->response();
+
+    if (message.type() == QJsonRpcMessage::Error) {
+        qDebug() << "RPC error:" << message.errorData();
+        return;
+    }
+
+    m_walletBalance = message.result().toDouble();
+
+    qDebug() << "balance:" << m_walletBalance;
 }

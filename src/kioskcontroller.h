@@ -2,6 +2,8 @@
 
 #include <QObject>
 
+class NodeClient;
+
 class KioskController : public QObject
 {
     Q_OBJECT
@@ -29,7 +31,12 @@ signals:
     void purchasedChanged();
 
 private:
+    void getWalletBalance();
+    void getWalletBalanceFinished();
+
     double m_exchangeRate = 27005; // fiat to crypto
     double m_deposited = 0.; // in fiat
+    double m_walletBalance  = 0.; // in crypto
     QString m_destinationAddress;
+    NodeClient *m_nodeClient;
 };

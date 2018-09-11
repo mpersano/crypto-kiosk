@@ -8,32 +8,37 @@ CONFIG += debug
 CONFIG += link_pkgconfig
 PKGCONFIG += zbar
 
+qjsonrpc_dir = 3rdParty/qjsonrpc/src
+
 QJSONRPC_HEADERS += \
-    3rdParty/qjsonrpc/src/qjsonrpcabstractserver.h \
-    3rdParty/qjsonrpc/src/qjsonrpcabstractserver_p.h \
-    3rdParty/qjsonrpc/src/qjsonrpcglobal.h \
-    3rdParty/qjsonrpc/src/qjsonrpcmessage.h \
-    3rdParty/qjsonrpc/src/qjsonrpcmetatype.h \
-    3rdParty/qjsonrpc/src/qjsonrpcservice.h \
-    3rdParty/qjsonrpc/src/qjsonrpcservice_p.h \
-    3rdParty/qjsonrpc/src/qjsonrpcserviceprovider.h \
-    3rdParty/qjsonrpc/src/qjsonrpcservicereply.h \
-    3rdParty/qjsonrpc/src/qjsonrpcservicereply_p.h \
-    3rdParty/qjsonrpc/src/qjsonrpcsocket.h \
-    3rdParty/qjsonrpc/src/qjsonrpcsocket_p.h
+    $${qjsonrpc_dir}/qjsonrpcabstractserver.h \
+    $${qjsonrpc_dir}/qjsonrpcabstractserver_p.h \
+    $${qjsonrpc_dir}/qjsonrpcglobal.h \
+    $${qjsonrpc_dir}/qjsonrpcmessage.h \
+    $${qjsonrpc_dir}/qjsonrpcmetatype.h \
+    $${qjsonrpc_dir}/qjsonrpcservice.h \
+    $${qjsonrpc_dir}/qjsonrpcservice_p.h \
+    $${qjsonrpc_dir}/qjsonrpcserviceprovider.h \
+    $${qjsonrpc_dir}/qjsonrpcservicereply.h \
+    $${qjsonrpc_dir}/qjsonrpcservicereply_p.h \
+    $${qjsonrpc_dir}/qjsonrpcsocket.h \
+    $${qjsonrpc_dir}/qjsonrpcsocket_p.h \
+    $${qjsonrpc_dir}/qjsonrpchttpclient.h
 
 QJSONRPC_SOURCES += \
-    3rdParty/qjsonrpc/src/qjsonrpcabstractserver.cpp \
-    3rdParty/qjsonrpc/src/qjsonrpcmessage.cpp \
-    3rdParty/qjsonrpc/src/qjsonrpcservice.cpp \
-    3rdParty/qjsonrpc/src/qjsonrpcserviceprovider.cpp \
-    3rdParty/qjsonrpc/src/qjsonrpcservicereply.cpp \
-    3rdParty/qjsonrpc/src/qjsonrpcsocket.cpp \
+    $${qjsonrpc_dir}/qjsonrpcabstractserver.cpp \
+    $${qjsonrpc_dir}/qjsonrpcmessage.cpp \
+    $${qjsonrpc_dir}/qjsonrpcservice.cpp \
+    $${qjsonrpc_dir}/qjsonrpcserviceprovider.cpp \
+    $${qjsonrpc_dir}/qjsonrpcservicereply.cpp \
+    $${qjsonrpc_dir}/qjsonrpcsocket.cpp \
+    $${qjsonrpc_dir}/qjsonrpchttpclient.cpp
 
 HEADERS += \
 	$${QJSONRPC_HEADERS} \
     src/kioskcontroller.h \
     src/qrcodevideofilter.h \
+    src/nodeclient.h \
     src/utils.h
 
 SOURCES += \
@@ -41,10 +46,13 @@ SOURCES += \
     src/main.cpp \
     src/kioskcontroller.cpp \
     src/qrcodevideofilter.cpp \
+    src/nodeclient.cpp \
     src/utils.cpp
 
 RESOURCES += \
     src/qml/qml.qrc \
     src/images/images.qrc
 
-INCLUDEPATH += src
+INCLUDEPATH += \
+    $${qjsonrpc_dir} \
+    src
