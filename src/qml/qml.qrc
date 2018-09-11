@@ -7,5 +7,6 @@
         <file>AcceptMoney.qml</file>
         <file>CircleButton.qml</file>
         <file>CloseButton.qml</file>
+        <file>TransferCompleted.qml</file>
     </qresource>
 </RCC>

@@ -11,6 +11,7 @@ Rectangle {
     readonly property int startIndex: 0
     readonly property int addressScanIndex: 1
     readonly property int acceptMoneyIndex: 2
+    readonly property int transferCompletedIndex: 3
 
     ColumnLayout {
         anchors.fill: parent
@@ -46,8 +47,15 @@ Rectangle {
                 width: root.width
                 height: root.height
                 onSendClicked: {
-                    console.log("send!")
+                    if (controller.send()) {
+                        root.currentIndex = transferCompletedIndex;
+                    }
                 }
+            }
+
+            TransferCompleted {
+                width: root.width
+                height: root.height
             }
         }
 
