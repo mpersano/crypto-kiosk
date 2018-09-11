@@ -35,14 +35,14 @@ QJSONRPC_SOURCES += \
     $${qjsonrpc_dir}/qjsonrpchttpclient.cpp
 
 HEADERS += \
-	$${QJSONRPC_HEADERS} \
+    $${QJSONRPC_HEADERS} \
     src/kioskcontroller.h \
     src/qrcodevideofilter.h \
     src/nodeclient.h \
     src/utils.h
 
 SOURCES += \
-	$${QJSONRPC_SOURCES} \
+    $${QJSONRPC_SOURCES} \
     src/main.cpp \
     src/kioskcontroller.cpp \
     src/qrcodevideofilter.cpp \
