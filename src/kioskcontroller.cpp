@@ -19,7 +19,7 @@ QString AddressPrefix()
 KioskController::KioskController(QObject *parent)
     : QObject{parent}
 {
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings{"settings.ini", QSettings::IniFormat};
 
     const auto nodePort = settings.value("nodePort").toInt();
     const auto nodeRpcUsername = settings.value("nodeRpcUsername").toString();
@@ -74,23 +74,16 @@ void KioskController::deposit(double value)
 
 void KioskController::getWalletBalance()
 {
-    const auto request = QJsonRpcMessage::createRequest("getbalance");
+    const auto request = QJsonRpcMessage::createRequest(QStringLiteral("getbalance"));
     auto *reply = m_nodeClient->sendMessage(request);
-    connect(reply, &QJsonRpcServiceReply::finished, this, &KioskController::getWalletBalanceFinished);
-}
-
-void KioskController::getWalletBalanceFinished()
-{
-    auto *reply = static_cast<QJsonRpcServiceReply *>(sender());
-    reply->disconnect(this);
-    const auto message = reply->response();
-
-    if (message.type() == QJsonRpcMessage::Error) {
-        qDebug() << "RPC error:" << message.errorData();
-        return;
-    }
-
-    m_walletBalance = message.result().toDouble();
-
-    qDebug() << "balance:" << m_walletBalance;
+    connect(reply, &QJsonRpcServiceReply::finished, this, [this, reply] {
+        reply->disconnect(this);
+        const auto message = reply->response();
+        if (message.type() == QJsonRpcMessage::Error) {
+            qDebug() << "RPC error:" << message.errorData();
+            return;
+        }
+        m_walletBalance = message.result().toDouble();
+        qDebug() << "balance:" << m_walletBalance;
+    });
 }

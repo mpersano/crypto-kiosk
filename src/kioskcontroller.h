@@ -32,7 +32,6 @@ signals:
 
 private:
     void getWalletBalance();
-    void getWalletBalanceFinished();
 
     double m_exchangeRate = 27005; // fiat to crypto
     double m_deposited = 0.; // in fiat
