@@ -34,19 +34,35 @@ QJSONRPC_SOURCES += \
     $${qjsonrpc_dir}/qjsonrpcsocket.cpp \
     $${qjsonrpc_dir}/qjsonrpchttpclient.cpp
 
+qrcodegenerator_dir = 3rdParty/QR-Code-generator/cpp
+
+QRCODEGENERATOR_HEADERS += \
+    $${qrcodegenerator_dir}/QrCode.hpp \
+    $${qrcodegenerator_dir}/QrSegment.hpp \
+    $${qrcodegenerator_dir}/BitBuffer.hpp
+
+QRCODEGENERATOR_SOURCES += \
+    $${qrcodegenerator_dir}/BitBuffer.cpp \
+    $${qrcodegenerator_dir}/QrCode.cpp \
+    $${qrcodegenerator_dir}/QrSegment.cpp
+
 HEADERS += \
     $${QJSONRPC_HEADERS} \
+    $${QRCODEGENERATOR_HEADERS} \
     src/kioskcontroller.h \
     src/qrcodevideofilter.h \
     src/nodeclient.h \
+    src/qrcodeimageprovider.h \
     src/utils.h
 
 SOURCES += \
     $${QJSONRPC_SOURCES} \
+    $${QRCODEGENERATOR_SOURCES} \
     src/main.cpp \
     src/kioskcontroller.cpp \
     src/qrcodevideofilter.cpp \
     src/nodeclient.cpp \
+    src/qrcodeimageprovider.cpp \
     src/utils.cpp
 
 RESOURCES += \
@@ -55,4 +71,5 @@ RESOURCES += \
 
 INCLUDEPATH += \
     $${qjsonrpc_dir} \
+    $${qrcodegenerator_dir} \
     src

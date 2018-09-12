@@ -1,3 +1,6 @@
 [submodule "3rdParty/qjsonrpc"]
 	path = 3rdParty/qjsonrpc
 	url = https://bitbucket.org/devonit/qjsonrpc.git
+[submodule "3rdParty/QR-Code-generator"]
+	path = 3rdParty/QR-Code-generator
+	url = https://github.com/nayuki/QR-Code-generator.git

@@ -11,7 +11,7 @@ class KioskController : public QObject
     Q_PROPERTY(QString destinationAddress READ destinationAddress NOTIFY destinationAddressChanged)
     Q_PROPERTY(QString deposited READ deposited NOTIFY depositedChanged)
     Q_PROPERTY(QString purchased READ purchased NOTIFY purchasedChanged)
-    Q_PROPERTY(QString lastTxId READ lastTxId NOTIFY lastTxIdChanged)
+    Q_PROPERTY(QString lastTransactionId READ lastTransactionId NOTIFY lastTransactionIdChanged)
 
 public:
     explicit KioskController(QObject *parent = nullptr);
@@ -25,7 +25,7 @@ public:
     QString destinationAddress() const;
     QString deposited() const;
     QString purchased() const;
-    QString lastTxId() const;
+    QString lastTransactionId() const;
 
 signals:
     void exchangeRateChanged();
@@ -33,17 +33,17 @@ signals:
     void depositedChanged();
     void purchasedChanged();
     void transferCompleted();
-    void lastTxIdChanged();
+    void lastTransactionIdChanged();
 
 private:
     void getWalletBalance();
     void resetPurchase();
-    void setLastTxId(const QString &lastTxId);
+    void setLastTransactionId(const QString &lastTransactionId);
 
     double m_exchangeRate = 27005; // fiat to crypto
     double m_deposited = 0.; // in fiat
     double m_walletBalance  = 0.; // in crypto
     QString m_destinationAddress;
-    QString m_lastTxId;
+    QString m_lastTransactionId;
     NodeClient *m_nodeClient = nullptr;
 };

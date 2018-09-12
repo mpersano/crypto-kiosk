@@ -5,6 +5,7 @@
 
 #include "qrcodevideofilter.h"
 #include "kioskcontroller.h"
+#include "qrcodeimageprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +16,9 @@ int main(int argc, char *argv[])
     KioskController controller;
 
     QQuickView view;
-    view.engine()->rootContext()->setContextProperty(QStringLiteral("controller"), &controller);
+    auto engine = view.engine();
+    engine->rootContext()->setContextProperty(QStringLiteral("controller"), &controller);
+    engine->addImageProvider(QLatin1String("QRCode"), new QRCodeImageProvider);
     view.setSource(QUrl("qrc:/main.qml"));
     view.setResizeMode(QQuickView::SizeRootObjectToView);
     view.show();

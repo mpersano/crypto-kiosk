@@ -66,9 +66,9 @@ QString KioskController::destinationAddress() const
     return m_destinationAddress;
 }
 
-QString KioskController::lastTxId() const
+QString KioskController::lastTransactionId() const
 {
-    return m_lastTxId;
+    return m_lastTransactionId;
 }
 
 void KioskController::deposit(double value)
@@ -105,19 +105,19 @@ bool KioskController::send()
     connect(reply, &QJsonRpcServiceReply::finished, this, [this, reply] {
         const auto message = reply->response();
         if (message.type() == QJsonRpcMessage::Error) {
-            qDebug() << "RPC error:" << message.errorData();
+            qDebug() << "RPC error:" << message.toJson();
             return;
         }
-        setLastTxId(message.result().toString());
-        qDebug() << "transfer successful, txid:" << m_lastTxId;
+        setLastTransactionId(message.result().toString());
+        qDebug() << "transfer successful, txid:" << m_lastTransactionId;
         emit transferCompleted();
         getWalletBalance();
     });
     return true;
 }
 
-void KioskController::setLastTxId(const QString &lastTxId)
+void KioskController::setLastTransactionId(const QString &lastTransactionId)
 {
-    m_lastTxId = lastTxId;
-    emit lastTxIdChanged();
+    m_lastTransactionId = lastTransactionId;
+    emit lastTransactionIdChanged();
 }
