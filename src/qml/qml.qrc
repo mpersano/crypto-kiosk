@@ -8,5 +8,7 @@
         <file>CircleButton.qml</file>
         <file>CloseButton.qml</file>
         <file>TransferCompleted.qml</file>
+        <file>utils/qmldir</file>
+        <file>utils/Style.qml</file>
     </qresource>
 </RCC>

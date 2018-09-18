@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import "utils"
 
 Image {
     property alias text: titleText.text
@@ -8,8 +9,8 @@ Image {
     Text {
         id: titleText
         anchors.centerIn: parent
-        color: "darkblue"
-        font.pointSize: 22
+        color: Style.colorText
+        font.pointSize: Style.fontSizeM
     }
     MouseArea {
         id: mouseArea

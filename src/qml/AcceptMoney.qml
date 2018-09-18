@@ -1,9 +1,10 @@
 import QtQuick 2.3
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
+import "utils"
 
 Rectangle {
     id: root
-    color: "deepskyblue"
+    color: Style.colorBackground
 
     signal sendClicked()
 
@@ -21,22 +22,22 @@ Rectangle {
             Text {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Tap to complete purchase"
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
         }
 
         ColumnLayout {
             Text {
                 text: controller.deposited
-                color: "white"
-                font.pointSize: 22
+                color: Style.colorTitle
+                font.pointSize: Style.fontSizeM
             }
 
             Text {
                 text: "deposited so far"
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
 
             Item {
@@ -45,14 +46,14 @@ Rectangle {
 
             Text {
                 text: controller.purchased
-                color: "white"
-                font.pointSize: 22
+                color: Style.colorTitle
+                font.pointSize: Style.fontSizeM
             }
 
             Text {
                 text: "total bitcoin purchased"
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
 
             Item {
@@ -61,13 +62,13 @@ Rectangle {
 
             Text {
                 text: "Your bitcoin will be sent to:"
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
             Text {
                 text: controller.destinationAddress
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
         }
     }

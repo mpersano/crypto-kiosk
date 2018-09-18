@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import "utils"
 
 Image {
     signal clicked()
@@ -8,8 +9,8 @@ Image {
         anchors.topMargin: 8
         anchors.right: parent.right
         anchors.rightMargin: 8
-        color: "darkblue"
-        font.pointSize: 22
+        color: Style.colorText
+        font.pointSize: Style.fontSizeM
         font.bold: true
         text: "X"
     }

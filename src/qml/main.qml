@@ -1,6 +1,6 @@
 import QtQuick 2.3
 import QtQml.Models 2.1
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
 
 Rectangle {
     id: mainRect

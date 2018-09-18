@@ -1,9 +1,10 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
+import "utils"
 
 Rectangle {
     id: root
-    color: "deepskyblue"
+    color: Style.colorBackground
 
     signal startClicked()
 
@@ -19,8 +20,8 @@ Rectangle {
         Text {
             Layout.alignment: Qt.AlignHCenter
             text: "Tap to buy bitcoins"
-            color: "darkblue"
-            font.pointSize: 16
+            color: Style.colorText
+            font.pointSize: Style.fontSizeS
         }
     }
 }

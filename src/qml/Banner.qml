@@ -1,14 +1,15 @@
 import QtQuick 2.3
+import "utils"
 
 Rectangle {
     id: banner
     height: 80
-    color: "darkblue"
+    color: Style.colorBannerBackground
 
     Text {
         text: bannerText()
-        color: "white"
-        font.pointSize: 16
+        color: Style.colorBannerText
+        font.pointSize: Style.fontSizeS
         anchors.left: banner.left
         anchors.leftMargin: 32
         anchors.verticalCenter: banner.verticalCenter

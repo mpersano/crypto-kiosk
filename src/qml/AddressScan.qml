@@ -1,11 +1,12 @@
 import QtQuick 2.3
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
 import QtMultimedia 5.6
 import QRCode 1.0
+import "utils"
 
 Rectangle {
     id: root
-    color: "deepskyblue"
+    color: Style.colorBackground
 
     signal closeClicked()
     signal codeDetected(string code)
@@ -50,13 +51,13 @@ Rectangle {
             width: 400
             Text {
                 text: "Scan your\nbitcoin address"
-                color: "white"
-                font.pointSize: 32
+                color: Style.colorTitle
+                font.pointSize: Style.fontSizeL
             }
             Text {
                 text: "Hold your QR code\nup to the scan window\nto proceed"
-                color: "darkblue"
-                font.pointSize: 16
+                color: Style.colorText
+                font.pointSize: Style.fontSizeS
             }
         }
     }
